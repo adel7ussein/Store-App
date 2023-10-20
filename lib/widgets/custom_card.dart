@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/update_product_page.dart';
-import 'package:store_app/services/update_product.dart';
 
 class CustomCard extends StatelessWidget {
   CustomCard({super.key,required this.product});
@@ -11,7 +10,7 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, UpdateProductPage.id);
+        Navigator.pushNamed(context, UpdateProductPage.id, arguments: product);
       },
       child: Stack(
             clipBehavior: Clip.none,
@@ -33,7 +32,7 @@ class CustomCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('${product.title.substring(0,12)}', style: const TextStyle(color: Colors.grey,fontSize: 16),),
+                      Text('${product.title.substring(0,8)}', style: const TextStyle(color: Colors.grey,fontSize: 16),),
                       const SizedBox(height: 3,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,8 +48,8 @@ class CustomCard extends StatelessWidget {
               ),
             ),
                Positioned(
-                right: 15,
-                top: -60,
+                right: 7,
+                top: -65,
                 child: Image.network(product.image, height: 100,width: 100,errorBuilder: (context, error, stackTrace) {
                  return const Text('No Image');
                 },))
