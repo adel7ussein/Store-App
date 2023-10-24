@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:store_app/helper/show_snack_bar.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/update_product.dart';
 import 'package:store_app/widgets/custom_button.dart';
@@ -82,11 +83,14 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                     onTap: () async{
                       isLoading = true;
                       setState(() {});
-                      await updateProduct(product);
-
                       try {
+                        await updateProduct(product);
+                        showSnackBar(context, 'success update');
+
                       } catch (e) {
                         print(e.toString());
+                        showSnackBar(context, 'there wae an error');
+
                       }
                       isLoading = false;
                       setState(() {});
@@ -108,5 +112,7 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
         desc: desc == null ? product.description : desc!,
         image: image == null ? product.image : image!,
         category: product.category);
+        isLoading = false;
+
   }
 }
