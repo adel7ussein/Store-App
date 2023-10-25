@@ -1,6 +1,6 @@
 import 'package:store_app/helper/api.dart';
 import 'package:store_app/models/product_model.dart';
-class AllCategroiesService
+class AllProductCategroiesService
 {
   Future<List<ProductModel>> getCategoriesProducts ({required String categoryName }) async
   {  

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/screens/home_page.dart';
 import 'package:store_app/screens/on_boarding_page.dart';
+import 'package:store_app/screens/all_products_page.dart';
 import 'package:store_app/screens/update_product_page.dart';
 import '../helper/shared_boolean.dart';
 
@@ -19,7 +20,8 @@ class StoreApp extends StatelessWidget {
       routes: {
         HomePage.id :(context) => const HomePage(),
         UpdateProductPage.id :(context) => UpdateProductPage(),
-        OnBoarding.id : (context) => OnBoarding()
+        OnBoarding.id : (context) => OnBoarding(),
+        ItemCard.id : (context) => ItemCard(),
       },
       initialRoute: isLastPage ? HomePage.id : OnBoarding.id,
     );
