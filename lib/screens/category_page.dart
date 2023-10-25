@@ -27,9 +27,9 @@ class _CategoryState extends State<Category> {
              categories = snapshot.data!;
             return Padding(
               padding: const EdgeInsets.only(
-                  right: 20, left: 20, top: 16, bottom: 10),
+                  right: 20, left: 20, bottom: 10),
               child: SizedBox(
-                height: 40,
+                height: 50,
                 child: ListView.separated(
                   itemCount: categories.length,
                   clipBehavior: Clip.none,
@@ -42,7 +42,7 @@ class _CategoryState extends State<Category> {
                         });
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10 , vertical: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -50,7 +50,7 @@ class _CategoryState extends State<Category> {
                               categories[index],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: selectedIndex == index
                                       ? Colors.black
                                       : Colors.grey[600]),

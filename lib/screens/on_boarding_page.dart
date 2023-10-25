@@ -5,7 +5,6 @@ import 'package:store_app/widgets/custom_on_boarding.dart';
 
 import '../helper/shared_boolean.dart';
 import 'home_page.dart';
-bool isLastPage = false;
 
 
 class OnBoarding extends StatefulWidget {
@@ -21,16 +20,11 @@ class OnBoarding extends StatefulWidget {
 class _OnBoardingState extends State<OnBoarding> {
   //controller keep track which page we are on
   PageController _controller = PageController();
+  int currentIndex = 0;
 
   //keep track if we are on the last page or not
  // bool isLastPage = false;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getBool();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +34,7 @@ class _OnBoardingState extends State<OnBoarding> {
             onPageChanged: (index){
               setState(() {
                 isLastPage = (index == 2);
+                currentIndex = index;
               });
             },
             children: [
@@ -58,7 +53,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         _controller.jumpToPage(2);
                       },
                       child: Text('Skip',style: TextStyle(fontWeight: FontWeight.bold),)),
-                  SmoothPageIndicator(controller: _controller, count: 3),
+                  AnimatedSmoothIndicator( count: 3, activeIndex: currentIndex,),
                   isLastPage ?
                   GestureDetector(
                       onTap: (){

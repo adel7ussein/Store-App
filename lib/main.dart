@@ -5,7 +5,9 @@ import 'package:store_app/screens/all_products_page.dart';
 import 'package:store_app/screens/update_product_page.dart';
 import '../helper/shared_boolean.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await getBool();
   runApp(const StoreApp());
 
 }

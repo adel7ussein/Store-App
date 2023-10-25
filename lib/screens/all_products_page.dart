@@ -13,12 +13,12 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(right: 14, left: 14, top: 70),
+        padding: const EdgeInsets.only(right: 14, left: 14, top: 100),
         child: FutureBuilder<List<ProductModel>>(future: AllProductsService().getAllProducts(),builder: (context, snapshot){
           if (snapshot.hasData) {
             List<ProductModel> products = snapshot.data!;
-            return GridView.builder( itemCount: products.length,clipBehavior: Clip.none,gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
-                childAspectRatio: 1.6, crossAxisSpacing: 10, mainAxisSpacing: 100
+            return GridView.builder( itemCount: products.length ,clipBehavior: Clip.none,gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
+                childAspectRatio: 1.8, crossAxisSpacing: 10, mainAxisSpacing: 100
             ), itemBuilder: (context ,index){
               return  CustomCard(product: products[index],);
             });
