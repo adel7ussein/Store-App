@@ -32,7 +32,7 @@ class CustomCard extends StatelessWidget {
                 children: [
                   Text(
                     '${product.title.substring(0, 8)}',
-                    style: const TextStyle(color: Colors.grey, fontSize: 16),
+                    style: const TextStyle(color: Color(0xFF535353), fontSize: 16),
                   ),
                   const SizedBox(
                     height: 3,

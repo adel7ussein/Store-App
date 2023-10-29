@@ -57,7 +57,8 @@ class _OnBoardingState extends State<OnBoarding> {
                   isLastPage ?
                   GestureDetector(
                       onTap: (){
-                        Navigator.pushNamed(context, HomePage.id);
+                        Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => HomePage()),
+                        );
                         setState(() {
                           saveBool();
                         });

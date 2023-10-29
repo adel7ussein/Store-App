@@ -4,57 +4,63 @@ import 'package:store_app/screens/all_products_page.dart';
 
 import 'category_page.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  HomePage({super.key});
   static String id = 'HomePage';
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  FontAwesomeIcons.cartPlus,
-                  color: Colors.white,
-                ))
-          ],
-          backgroundColor: Color(0xFF3D82AE),
-          elevation: 0,
-          centerTitle: true,
-          title: const Text(
-            'New Trend',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                FontAwesomeIcons.cartPlus,
+                color: Colors.white,
+              ))
+        ],
+        backgroundColor: Color(0xFF3D82AE),
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'New Trend',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Category(),
-            Padding(
-              padding: const EdgeInsets.only(left: 14),
-              child: Card(
-                elevation: 2,
-                child: Container(
-                  width: 100,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Center(
-                      child: Text(
-                    'all products',
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  )),
-                ),
-              ),
-            ),
-            const ItemCard(),
-          ],
-        ));
+      ),
+      body: IndexedStack(
+        index: currentIndex,
+        children: const [ItemCard(), CategoryPage(), Center(child: Text('Favorite'))],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Color(0xFF535353),
+        backgroundColor: Color(0xFF3D82AE),
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.category_outlined), label: 'Category'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite), label: 'Favorite'),
+        ],
+      ),
+    );
   }
 }

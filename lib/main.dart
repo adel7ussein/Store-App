@@ -21,11 +21,11 @@ class StoreApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        HomePage.id :(context) => const HomePage(),
+        HomePage.id :(context) =>  HomePage(),
         UpdateProductPage.id :(context) => UpdateProductPage(),
         OnBoarding.id : (context) => OnBoarding(),
         ItemCard.id : (context) => ItemCard(),
-        DetailScreen.id : (context) => DetailScreen()
+        DetailScreen.id : (context) => DetailScreen(),
       },
       initialRoute: isLastPage ? HomePage.id : OnBoarding.id,
     );

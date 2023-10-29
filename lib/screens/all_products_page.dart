@@ -23,7 +23,7 @@ class ItemCard extends StatelessWidget {
               return  CustomCard(product: products[index],);
             });
           }else{
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator(color:Color(0xFF3D82AE) ,));
           }
         }),
       ),
