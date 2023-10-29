@@ -17,36 +17,20 @@ class HomePage extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(
                   FontAwesomeIcons.cartPlus,
-                  color: Colors.black,
+                  color: Colors.white,
                 ))
           ],
-          backgroundColor: Colors.white,
+          backgroundColor: Color(0xFF3D82AE),
           elevation: 0,
           centerTitle: true,
           title: const Text(
             'New Trend',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 16, right: 16, top: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Category',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                  ),
-                  Text(
-                    'see all',
-                    style: TextStyle(color: Colors.blueGrey, fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
             const Category(),
             Padding(
               padding: const EdgeInsets.only(left: 14),
