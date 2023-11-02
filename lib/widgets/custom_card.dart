@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/detail_page.dart';
 import 'package:store_app/screens/update_product_page.dart';
 
-class CustomCard extends StatelessWidget {
+class CustomCard extends StatefulWidget {
   CustomCard({super.key, required this.product});
   ProductModel product;
 
   @override
+  State<CustomCard> createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
+  bool isFavorite = false ;
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, DetailScreen.id, arguments: product); //UpdateProductPage.id
+        Navigator.pushNamed(context, DetailScreen.id, arguments: widget.product); //UpdateProductPage.id
       },
       child: Stack(clipBehavior: Clip.none, children: [
         Container(
+          width: 250,
+          height: 400,
           decoration: BoxDecoration(boxShadow: [
             BoxShadow(
                 color: Colors.grey.withOpacity(0.2),
@@ -31,7 +40,7 @@ class CustomCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${product.title.substring(0, 8)}',
+                    '${widget.product.title.substring(0, 8)}',
                     style: const TextStyle(color: Color(0xFF535353), fontSize: 16),
                   ),
                   const SizedBox(
@@ -41,13 +50,21 @@ class CustomCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        r'$ ' '${product.price}',
+                        r'$ ' '${widget.product.price}',
                         style: const TextStyle(fontSize: 16),
                       ),
-                      const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      )
+                       GestureDetector(
+                         onTap: (){
+                           setState(() {
+                             isFavorite = !isFavorite;
+                           });
+                         },
+                         child: Icon(
+                           isFavorite ? Icons.favorite :
+                           FontAwesomeIcons.heart,  // Color(0xFF535353)
+                          color: Color(0xFF535353),
+                      ),
+                       )
                     ],
                   )
                 ],
@@ -56,10 +73,10 @@ class CustomCard extends StatelessWidget {
           ),
         ),
         Positioned(
-            right: 7,
+            right: 30,
             top: -65,
             child: Image.network(
-              product.image,
+              widget.product.image,
               height: 100,
               width: 100,
               errorBuilder: (context, error, stackTrace) {

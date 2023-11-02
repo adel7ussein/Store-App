@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.category_outlined), label: 'Category'),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite), label: 'Favorite'),
+
         ],
       ),
     );

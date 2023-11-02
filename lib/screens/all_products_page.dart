@@ -18,7 +18,7 @@ class ItemCard extends StatelessWidget {
           if (snapshot.hasData) {
             List<ProductModel> products = snapshot.data!;
             return GridView.builder( itemCount: products.length ,clipBehavior: Clip.none,gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
-                childAspectRatio: 1.8, crossAxisSpacing: 10, mainAxisSpacing: 100
+                childAspectRatio: 1.5, crossAxisSpacing: 10, mainAxisSpacing: 100
             ), itemBuilder: (context ,index){
               return  CustomCard(product: products[index],);
             });

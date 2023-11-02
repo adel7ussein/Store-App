@@ -14,6 +14,9 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   TextField(
+      onTapOutside: (event){
+        FocusManager.instance.primaryFocus!.unfocus();
+      },
       onChanged: onChanged ,
       keyboardType : inputType,
       obscureText: isObscureText ,
@@ -22,7 +25,7 @@ class CustomTextField extends StatelessWidget {
           hintText: hintText,
           focusedBorder:OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: Colors.black,)),
+            borderSide: const BorderSide(color: Color(0xFF3D82AE))),
           enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(
               ),
