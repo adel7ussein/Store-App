@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:store_app/screens/home_page.dart';
 import 'package:store_app/screens/update_product_page.dart';
+import 'package:store_app/widgets/custom_button.dart';
+import 'package:store_app/widgets/custom_different_text_widgets.dart';
 
 import '../models/product_model.dart';
 
@@ -14,6 +16,10 @@ class DetailScreen extends StatelessWidget {
     ProductModel product =
         ModalRoute.of(context)!.settings.arguments as ProductModel;
     Size size = MediaQuery.of(context).size;
+    TextStyle textStyle = Theme.of(context)
+        .textTheme
+        .headlineMedium!
+        .copyWith(color: Color(0xFF535353), fontWeight: FontWeight.bold);
     return Scaffold(
       backgroundColor: Color(0xFF3D82AE),
       appBar: AppBar(
@@ -61,50 +67,27 @@ class DetailScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'rating',
-                                  style: TextStyle(
-                                      color: Color(0xFF535353), fontSize: 20),
-                                ),
-                                Text(product.rating.rate.toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                            color: Color(0xFF535353),
-                                            fontWeight: FontWeight.bold))
-                              ],
+                            CustomColumn(
+                              text: 'rating',
+                              valueOfText: product.rating.rate.toString(),
+                              colorValueOfText: Color(0xFF535353),
+                              colorOfText: Color(0xFF535353),
+                              fontSize: 20,
                             ),
                             SizedBox(
                               width: 80,
                             ),
-                            Column(
-                              children: [
-                                Text(
-                                  'count',
-                                  style: TextStyle(
-                                      color: Color(0xFF535353), fontSize: 20),
-                                ),
-                                Text(product.rating.count.toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium!
-                                        .copyWith(
-                                            color: Color(0xFF535353),
-                                            fontWeight: FontWeight.bold))
-                              ],
-                            ),
+                            CustomColumn(
+                              text: 'count',
+                              valueOfText: product.rating.count.toString(),
+                              colorValueOfText: Color(0xFF535353),
+                              colorOfText: Color(0xFF535353),
+                              fontSize: 20,
+                            )
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: Text(
-                            product.description,
-                            style: TextStyle(
-                                color: Color(0xFF535353), height: 1.2),
-                          ),
+                        Description(
+                          description: product.description,
                         ),
                         Row(
                           children: [
@@ -122,40 +105,19 @@ class DetailScreen extends StatelessWidget {
                                     FontAwesomeIcons.cartPlus,
                                   )),
                             ),
-                            SizedBox(
-                              height: 50,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Color(0xFF3D82AE)),
-                                child: Text(
-                                  'Buy Now'.toUpperCase(),
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                              ),
+                            CustomElevatedButton(
+                                onPressed: () {}, titleButton: 'Buy Now'),
+                            const SizedBox(
+                              width: 15,
                             ),
-                            const SizedBox(width: 15,),
-                            SizedBox(
-                              height: 50,
-                              width: 120,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, UpdateProductPage.id, arguments: product);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Color(0xFF3D82AE)),
-                                child: Text(
-                                  'Update'.toUpperCase(),
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                              ),
-                            ),
+                            Expanded(
+                                child: CustomElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, UpdateProductPage.id,
+                                          arguments: product);
+                                    },
+                                    titleButton: 'Update')),
                           ],
                         ),
                       ],
@@ -167,17 +129,12 @@ class DetailScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        product.title,
-                        style: TextStyle(color: Colors.white, fontSize: 15),
-                      ),
-                      Text(product.category,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium!
-                              .copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
+                      CustomText(
+                          customText: product.title,
+                          color: Colors.white,
+                          fontSize: 15),
+                      CustomValueOfText(
+                          textValue: product.category, color: Colors.white),
                       Padding(
                         padding: const EdgeInsets.only(top: 25, bottom: 65),
                         child: Row(
@@ -185,20 +142,13 @@ class DetailScreen extends StatelessWidget {
                           children: [
                             Column(
                               children: [
-                                Text(
-                                  'Price',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15),
-                                ),
-                                Text(
-                                  r'$' '${product.price}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium!
-                                      .copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                )
+                                CustomText(
+                                    customText: 'Price',
+                                    color: Colors.white,
+                                    fontSize: 15),
+                                CustomValueOfText(
+                                    textValue: r'$' '${product.price}',
+                                    color: Colors.white)
                               ],
                             ),
                             Image.network(

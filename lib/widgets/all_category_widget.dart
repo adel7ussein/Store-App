@@ -3,10 +3,7 @@ import 'package:store_app/services/all_categories_service.dart';
 
 import '../models/product_model.dart';
 import '../services/categories_service.dart';
-import '../services/get_all_product_service.dart';
 import '../widgets/custom_card.dart';
-import 'all_products_page.dart';
-
 int selectedIndex = 0;
 List categories = [
   "electronics",
@@ -55,7 +52,7 @@ class _CategoryState extends State<CategoryPage> {
                   categories = snapshot.data!;
                   return Padding(
                     padding:
-                        const EdgeInsets.only(right: 20, left: 20, bottom: 10),
+                    const EdgeInsets.only(right: 20, left: 20, bottom: 10),
                     child: SizedBox(
                       height: 50,
                       child: ListView.separated(
@@ -99,7 +96,7 @@ class _CategoryState extends State<CategoryPage> {
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) =>
-                            const SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                       ),
@@ -110,8 +107,8 @@ class _CategoryState extends State<CategoryPage> {
                     padding: EdgeInsets.all(8.0),
                     child: Center(
                         child: CircularProgressIndicator(
-                      color: Color(0xFF535353),
-                    )),
+                          color: Color(0xFF535353),
+                        )),
                   );
                 }
               }),
@@ -128,11 +125,11 @@ class _CategoryState extends State<CategoryPage> {
                           itemCount: products.length,
                           clipBehavior: Clip.none,
                           gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 1.5,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 100),
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 1.5,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 100),
                           itemBuilder: (context, index) {
                             return CustomCard(
                               product: products[index],
@@ -141,8 +138,8 @@ class _CategoryState extends State<CategoryPage> {
                     } else {
                       return const Center(
                           child: CircularProgressIndicator(
-                        color: Color(0xFF3D82AE),
-                      ));
+                            color: Color(0xFF3D82AE),
+                          ));
                     }
                   }),
             ),

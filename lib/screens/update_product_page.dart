@@ -8,7 +8,7 @@ import 'package:store_app/widgets/custom_text_field.dart';
 
 // ignore: must_be_immutable
 class UpdateProductPage extends StatefulWidget {
-  UpdateProductPage({super.key});
+  const UpdateProductPage({super.key});
   static String id = 'update product';
 
   @override
@@ -80,17 +80,14 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                   height: 50,
                 ),
                 CustomButton(
-                    onTap: () async{
+                    onTap: () async {
                       isLoading = true;
                       setState(() {});
                       try {
                         await updateProduct(product);
                         showSnackBar(context, 'success update');
-
                       } catch (e) {
-                        print(e.toString());
-                        showSnackBar(context, 'there wae an error');
-
+                        showSnackBar(context, 'there is an error');
                       }
                       isLoading = false;
                       setState(() {});
@@ -106,13 +103,12 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
 
   Future<void> updateProduct(ProductModel product) async {
     UpdateProductService().updateProduct(
-        title: productName == null? product.title : productName!,
+        title: productName == null ? product.title : productName!,
         id: product.id,
         price: price == null ? product.price.toString() : price!,
         desc: desc == null ? product.description : desc!,
         image: image == null ? product.image : image!,
         category: product.category);
-        isLoading = false;
-
+    isLoading = false;
   }
 }

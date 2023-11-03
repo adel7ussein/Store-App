@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/screens/detail_page.dart';
-import 'package:store_app/screens/update_product_page.dart';
 
 class CustomCard extends StatefulWidget {
   CustomCard({super.key, required this.product});
@@ -13,12 +12,13 @@ class CustomCard extends StatefulWidget {
 }
 
 class _CustomCardState extends State<CustomCard> {
-  bool isFavorite = false ;
+  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, DetailScreen.id, arguments: widget.product); //UpdateProductPage.id
+        Navigator.pushNamed(context, DetailScreen.id,
+            arguments: widget.product); //UpdateProductPage.id
       },
       child: Stack(clipBehavior: Clip.none, children: [
         Container(
@@ -40,8 +40,9 @@ class _CustomCardState extends State<CustomCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${widget.product.title.substring(0, 8)}',
-                    style: const TextStyle(color: Color(0xFF535353), fontSize: 16),
+                    widget.product.title.substring(0, 8),
+                    style:
+                        const TextStyle(color: Color(0xFF535353), fontSize: 16),
                   ),
                   const SizedBox(
                     height: 3,
@@ -53,18 +54,19 @@ class _CustomCardState extends State<CustomCard> {
                         r'$ ' '${widget.product.price}',
                         style: const TextStyle(fontSize: 16),
                       ),
-                       GestureDetector(
-                         onTap: (){
-                           setState(() {
-                             isFavorite = !isFavorite;
-                           });
-                         },
-                         child: Icon(
-                           isFavorite ? Icons.favorite :
-                           FontAwesomeIcons.heart,  // Color(0xFF535353)
-                          color: Color(0xFF535353),
-                      ),
-                       )
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isFavorite = !isFavorite;
+                          });
+                        },
+                        child: Icon(
+                          isFavorite
+                              ? Icons.favorite
+                              : FontAwesomeIcons.heart, // Color(0xFF535353)
+                          color: Colors.red,
+                        ),
+                      )
                     ],
                   )
                 ],

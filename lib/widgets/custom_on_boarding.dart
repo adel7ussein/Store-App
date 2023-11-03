@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomOnBoarding extends StatelessWidget {
-   CustomOnBoarding({Key? key,required this.imagePath}) : super(key: key);
+  CustomOnBoarding(
+      {Key? key,
+      required this.imagePath,
+      required this.titleScreen,
+      required this.bodyScreen})
+      : super(key: key);
   String imagePath;
+  String titleScreen;
+  String bodyScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -11,15 +18,30 @@ class CustomOnBoarding extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 150,),
+          const SizedBox(
+            height: 150,
+          ),
           Image.asset(imagePath),
-          SizedBox(height: 70,),
-          Text('Screen Title', style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-          SizedBox(height: 10,),
-          Text('Screen Body', style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
-
-
-
+          const SizedBox(
+            height: 70,
+          ),
+          Text(
+            titleScreen,
+            style: const TextStyle(
+                color: Color(0xFF535353),
+                fontSize: 24,
+                fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            bodyScreen,
+            style: const TextStyle(
+                color: Color(0xFF535353),
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );

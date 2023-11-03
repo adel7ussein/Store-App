@@ -1,11 +1,11 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:store_app/screens/all_products_page.dart';
-
-import 'category_page.dart';
+import '../widgets/all_category_widget.dart';
+import '../widgets/all_products_widget.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
   static String id = 'HomePage';
 
   @override
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {},
               icon: const Icon(
                 FontAwesomeIcons.cartPlus,
-                color: Colors.white,
+                color: Colors.black,
               ))
         ],
         backgroundColor: Color(0xFF3D82AE),
@@ -37,29 +37,33 @@ class _HomePageState extends State<HomePage> {
       ),
       body: IndexedStack(
         index: currentIndex,
-        children: const [ItemCard(), CategoryPage(), Center(child: Text('Favorite'))],
+        children: const [
+          ItemCard(),
+          CategoryPage(),
+          Center(child: Text('Favorite')),
+          Center(child: Text('Add a Product'))
+        ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Color(0xFF535353),
-        backgroundColor: Color(0xFF3D82AE),
-        currentIndex: currentIndex,
+      bottomNavigationBar: CurvedNavigationBar(
+        height: 60,
+        backgroundColor: Colors.white,
+        color: const Color(0xFF3D82AE),
+        buttonBackgroundColor: Colors.white,
+        index: currentIndex,
         onTap: (index) {
           setState(() {
             currentIndex = index;
           });
         },
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+          Icon(Icons.home),
+          Icon(Icons.category_outlined),
+          Icon(
+            Icons.favorite,
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.category_outlined), label: 'Category'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Favorite'),
-
+          Icon(
+            Icons.add,
+          ),
         ],
       ),
     );
